@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+<p align="center">
+<a href="https://blog-man.herokuapp.com/">
+Blog Man
+</a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<p align="center">
 
-### `yarn start`
+<a href="https://github.com/pemba1s1/blog-man/blob/Main/LICENSE" target="_blank">
+<img alt="License: MIT" src="https://img.shields.io/github/license/pemba1s1/blog-man" />
+<img src="https://pyheroku-badge.herokuapp.com/?app=blog-man" alt="Heroku">
+</a>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  <p align="center">
+    <a href="https://blog-man.herokuapp.com/">View Demo</a>
+  </p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> ⚠️ _Website isn't mobile friendly and for best experience use Google Chrome._
 
-### `yarn test`
+## 💻 Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Frontend** : Javascript, React.js
+- **Styling** : Ant Design, Custom Css 
+- **Backend** : Javaxcript, Node.js with Express framework
+- **Database** : MongoDB
 
-### `yarn build`
+## 📺 Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Before running app locally make sure that you install following things:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Nodejs with npm or yarn with following version installed :
+  _npm >= 6.14.15  with node >= 14.17.6_
+- MongoDB Atlas as database.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Local Development
 
-### `yarn eject`
+### Step 1: Clone the repo
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+$ https://github.com/pemba1s1/blog-man.git
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Step 2: Install dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Install both client and server dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
 
-## Learn More
+# Install dependencies for server
+$ npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Install dependencies for client
+$ npm run install-client
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
+### Step 3: Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Create `.env` file in project root dir
 
-### Analyzing the Bundle Size
+   ```bash
+   $ touch .env
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Enter your MongoDB Atlas Connection String in MONGO_URI
 
-### Making a Progressive Web App
+3. Enter your Secret Key in JWT_SECRET
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. Enter JWT_LIFELINE
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Step 4: Usage
 
-### Deployment
+Now you can run the application by :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
 
-### `yarn build` fails to minify
+# Run the Express server only
+$ npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Run the React client only
+$ cd client && npm start
+
+# Server runs on http://localhost:5000 and client on http://localhost:3000
+
+```
+
+## ⛵ Production Deployment
+
+There is a Heroku post build script so that you do not have to compile your React frontend manually, it is done on the server. Simply push to Heroku and it will build and load the client index.html page
+
+## 📝 License
+
+Copyright © 2021 [Pemba Norsang Sherpa](http://pemba1s1.netlify.app/).<br />
+This project is [MIT](https://github.com/pemba1s1/blog-man/blob/Main/LICENSE) licensed.
