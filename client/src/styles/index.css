@@ -1,0 +1,134 @@
+.logo{
+    float: left;
+    width: 15%;
+    height: 100%;
+}
+.logo h1{
+    color:white;
+}
+.auth{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 15px;
+}
+.auth .item{
+    margin-left:5px ;
+    float:right;
+}
+.container{
+    margin:auto;
+    min-height: 80vh;
+    width: 70%;
+    padding-bottom: 20px;
+}
+.container .profile-name{
+    display:inline;
+    color:black;
+    font-size:15px;
+}
+.container .profile-name:hover{
+    color:rgb(91, 192, 222);
+}
+.list a{
+    color:inherit;
+}
+.list .litem{
+    position: relative;
+    z-index: 1;
+}
+.list .date{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    width:60%;
+    top : 15px;
+    z-index: -1;
+}
+.container .form{
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+.container .form .login-form-forgot{
+    float: right;
+}
+.container .form .login-form-button{
+    width: 100px;
+    display: inline;
+}
+.form h1{
+    font-weight: 500;
+    font-size: 30px;
+}
+.footer{
+    height: 10vh;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+.spin{
+    float:right;
+    margin-top: 5px;
+    margin-right: 15px;
+}
+.container .img{
+    width: 300px;
+}
+.container .file-input{
+    border: none;
+}
+.container .flex-image{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 90%;
+    margin:auto;
+    column-gap: 10px;
+    min-height: 80vh;
+}
+.grid .img{
+    width: 250px;
+}
+.grid a{
+    color: inherit;
+}
+.grid .item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 80vh;
+}
+.grid h1{
+    font-size: 27px;
+    font-weight: 600;
+    display: inline;
+}
+.grid .username{
+    line-height: 15px;
+    font-size: 15px;
+}
+.grid .profile-pic{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 50%;
+}
+.grid .edit-button{
+    width: 100%;
+}
+.grid .form{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:100px;
+}
+.grid .item .ant-upload{
+    width: 100%;
+}
