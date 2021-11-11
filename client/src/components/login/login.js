@@ -17,6 +17,7 @@ export default function Login() {
             localStorage.setItem('token',res.data.token)
             localStorage.setItem('userId',res.data.user.userId)
             localStorage.setItem('avatar',res.data.user.avatar)
+            localStorage.setItem('username',res.data.user.username)
             setLoad(false)
             navigate('/')
         },err=>{

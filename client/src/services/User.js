@@ -3,6 +3,7 @@ import axios from 'axios'
 export const Logout = () =>{
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
+    localStorage.removeItem('username')
     localStorage.removeItem('avatar')
 }
 
