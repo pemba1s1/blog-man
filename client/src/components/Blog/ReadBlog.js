@@ -5,6 +5,7 @@ import {Link, useParams,useNavigate} from 'react-router-dom'
 import { Avatar, Button, Skeleton,Image } from "antd";
 import {Del} from './../../services/Blog'
 import dayjs from 'dayjs'
+import DOMPurify from 'dompurify';
 
 export default function ReadBlog() {
     let [loading,setLoading] = useState(true)
@@ -59,7 +60,7 @@ export default function ReadBlog() {
             <Image preview={false} src={`/file/${blog.photo}`} alt="logo" style={{width:"100%",marginBottom:"15px"}}/>
             </div>
             <div className="content">
-                <p style={{fontSize:"15px"}}>{blog.content}</p>
+                <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content)}}></p>
             </div>
             </>
         }

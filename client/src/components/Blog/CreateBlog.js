@@ -10,18 +10,38 @@ import { LoadingOutlined,UploadOutlined } from '@ant-design/icons';
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { useState,useEffect } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const dummyRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
       onSuccess("ok");
     }, 0);
   };
+
+const  modules  = {
+    toolbar: [
+        [{ font: [] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ color: [] }, { background: [] }],
+        [{ script:  "sub" }, { script:  "super" }],
+        ["blockquote", "code-block"],
+        [{ list:  "ordered" }, { list:  "bullet" }],
+        [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+        ["link", "image", "video"],
+        ["clean"],
+    ],
+};
 export default function CreateBlog() {
+    let [value,setValue] = useState('');
     let [file, setFile] = useState(null);
     let [load,setLoad]=useState(false)
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
     const [form] = Form.useForm()
     let navigate=useNavigate()
+    console.log(value)
+
 
     useEffect(()=>{
         document.title="New Blog"
@@ -32,6 +52,7 @@ export default function CreateBlog() {
         setLoad(true)
         const fd = new FormData();
         fd.append('file', file, file.name);
+        console.log(values)
         await axios.post('/file/upload',fd,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -104,7 +125,7 @@ export default function CreateBlog() {
                     message:"Write content"
                 }
             ]}>
-                <Input.TextArea rows={20}/>
+                <ReactQuill modules={modules} onChange={setValue} theme="snow" placeholder="Content goes here..." />
             </Form.Item>
             <Form.Item label="Photo" onChange={handleFile}>
                 <Upload.Dragger maxCount={1} accept=".jpg, .png, .jpeg" name="file" customRequest={dummyRequest} listType="picture">

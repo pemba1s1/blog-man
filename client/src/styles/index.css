@@ -132,3 +132,6 @@
 .grid .item .ant-upload{
     width: 100%;
 }
+.ql-editor{
+    min-height:300px;
+}

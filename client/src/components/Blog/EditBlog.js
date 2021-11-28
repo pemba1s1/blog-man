@@ -12,16 +12,32 @@ import { useNavigate,useParams } from "react-router";
 import { useEffect,useState } from "react";
 import {Edit} from './../../services/Blog'
 import {DeletePhoto} from './../../services/File'
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import DOMPurify from 'dompurify';
 
 const dummyRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
       onSuccess("ok");
     }, 0);
   };
-
+const  modules  = {
+    toolbar: [
+        [{ font: [] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ color: [] }, { background: [] }],
+        [{ script:  "sub" }, { script:  "super" }],
+        ["blockquote", "code-block"],
+        [{ list:  "ordered" }, { list:  "bullet" }],
+        [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+        ["link", "image", "video"],
+        ["clean"],
+    ],
+};
 
 export default function EditBlog() {
+    let [value,setValue] = useState('')
     let [file, setFile] = useState(null);
     let [load,setLoad]=useState(false)
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -111,14 +127,14 @@ export default function EditBlog() {
             <Form.Item
             name="content"
             label="Content"
-            initialValue={blog.content}
+            initialValue={DOMPurify.sanitize(blog.content)}
             rules={[
                 {
                     required:true,
                     message:"Write content"
                 }
             ]}>
-                <Input.TextArea rows={20}/>
+                <ReactQuill modules={modules} onChange={setValue} theme="snow"  />
             </Form.Item>
             <Form.Item label="Photo" onChange={handleFile}>
                 <Upload.Dragger maxCount={1} accept=".jpg, .png, .jpeg" name="file" customRequest={dummyRequest} listType="picture">
