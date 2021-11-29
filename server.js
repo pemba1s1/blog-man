@@ -9,12 +9,6 @@ const path = require("path")
 const errorHandlerMiddleware = require('./middleware/error-handler')
 require('dotenv').config()
 
-
-
-
-
-
-
 app.use(cors())
 app.use(express.json())
 
@@ -22,8 +16,6 @@ app.use('/', express.static(path.join(__dirname, '/client/build')));
 app.use('/api/v1/blogs',blogRoute)
 app.use('/api/user',authRoute)
 app.use("/file", file);
-
-
 
 app.use(errorHandlerMiddleware)
 
