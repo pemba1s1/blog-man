@@ -3,7 +3,8 @@ const app = express()
 const cors = require('cors')
 const blogRoute = require('./routes/blog')
 const authRoute = require('./routes/auth')
-const file = require("./routes/file");
+const file = require("./routes/file")
+const comment = require("./routes/comment")
 const connectDb = require('./database/connect')
 const path = require("path")
 const errorHandlerMiddleware = require('./middleware/error-handler')
@@ -16,6 +17,7 @@ app.use('/', express.static(path.join(__dirname, '/client/build')));
 app.use('/api/v1/blogs',blogRoute)
 app.use('/api/user',authRoute)
 app.use("/file", file);
+app.use("/api/comment",comment)
 
 app.use(errorHandlerMiddleware)
 
