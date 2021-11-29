@@ -28,7 +28,7 @@ const editComment = asyncWrapper(async(req,res) => {
 
 const viewComment = asyncWrapper(async (req,res) => {
     const {id:blogId} = req.params
-    const comment = await Comment.find({blogId:blogId}).populate('authorId','-password')
+    const comment = await Comment.find({blogId:blogId}).populate('authorId','-password').sort({createdAt:-1})
     if(!comment){
         return res.status(StatusCodes.NO_CONTENT).json({msg:"Comments not found"})
     }else{

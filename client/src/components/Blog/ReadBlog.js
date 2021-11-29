@@ -2,12 +2,18 @@ import { Content } from "antd/lib/layout/layout";
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import {Link, useParams,useNavigate} from 'react-router-dom'
-import { Avatar, Button, Skeleton,Image } from "antd";
+import { Avatar, Button, Skeleton,Image,Divider } from "antd";
 import {Del} from './../../services/Blog'
 import dayjs from 'dayjs'
 import DOMPurify from 'dompurify';
+import { getComment } from "../../services/Comment";
+import Commentt from "../Comment/Comment";
+import WriteComment from "../Comment/WriteComment";
+
 
 export default function ReadBlog() {
+    let [loadingComment,setLoadingComment] = useState(true)
+    let [comments,setComments]= useState([])
     let [loading,setLoading] = useState(true)
     let navigate = useNavigate()
     let params = useParams()
@@ -15,16 +21,23 @@ export default function ReadBlog() {
 
     useEffect(() => {
         async function fetchData(){
+            await getComment(params.id).then(res=>{
+                setComments(res)
+                setLoadingComment(false)
+            }).catch(err=>{
+                console.log(err)
+            })
             await axios.get(`/api/v1/blogs/${params.id}`).then(res=>{
                         setBlog(res.data.blog)
                         setLoading(false)
-                        console.log(res.data.blog)
                         document.title = res.data.blog.title || blog.title
                     })
+            
         }
         fetchData()
     // eslint-disable-next-line  
     }, [])
+
     return (
         <Content className="container" style={{marginTop:"30px"}}>
         {loading?<Skeleton active avatar paragraph={{ rows: 4 }}/>:
@@ -61,6 +74,16 @@ export default function ReadBlog() {
             </div>
             <div className="content">
                 <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content)}}></p>
+            </div>
+            <Divider />
+            <div className="comment">
+                Comments
+                <WriteComment blogId={blog._id}/>
+                {loadingComment?<p>Loaing comment</p>:
+                <>{comments.map((comment)=>(
+                    <Commentt key={comment._id} comment={comment}/>
+                ))}</>
+                }
             </div>
             </>
         }
