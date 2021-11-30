@@ -37,7 +37,6 @@ const  modules  = {
 };
 
 export default function EditBlog() {
-    let [value,setValue] = useState('')
     let [file, setFile] = useState(null);
     let [load,setLoad]=useState(false)
     const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -134,7 +133,7 @@ export default function EditBlog() {
                     message:"Write content"
                 }
             ]}>
-                <ReactQuill modules={modules} onChange={setValue} theme="snow"  />
+                <ReactQuill modules={modules} theme="snow"  />
             </Form.Item>
             <Form.Item label="Photo" onChange={handleFile}>
                 <Upload.Dragger maxCount={1} accept=".jpg, .png, .jpeg" name="file" customRequest={dummyRequest} listType="picture">
