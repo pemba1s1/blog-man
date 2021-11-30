@@ -9,15 +9,28 @@ export const getComment = (id) => {
 }
 
 export const deleteComment = async(id) => {
-    await axios.delete(`/api/comment/${id}`).then(res=>{
+    await axios.delete(`/api/comment/${id}`,{
+        headers:{
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }}).then(res=>{
         console.log("deleted comment")
     }).catch(err=>{
         console.log("failed to delete")
     })
 }
 
-export const editComment = () => {
-
+export const editComment = async({commentId,comment,setEdit}) => {
+    console.log(setEdit)
+    await axios.patch(`/api/comment/${commentId}`,{comment:comment},{
+        headers:{
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+    }).then(res=>{
+        console.log(res)
+        setEdit()
+    }).catch(err=>{
+        console.log(err)
+    })
 }
 
 export const writeComment = async ({blogId,comment}) => {

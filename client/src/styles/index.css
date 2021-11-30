@@ -135,3 +135,23 @@
 .ql-editor{
     min-height:300px;
 }
+.comment-action{
+    display: none;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    text-align: center;
+}
+.comment-dot{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.comment-dot:hover ~.comment-action{
+    display: block;
+}
+.menu-item{
+    height: 30px;
+    padding-top: 20px;
+}

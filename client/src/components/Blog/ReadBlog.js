@@ -20,24 +20,24 @@ export default function ReadBlog() {
     let [blog,setBlog] = useState([])
 
     useEffect(() => {
-        async function fetchData(){
-            await getComment(params.id).then(res=>{
-                setComments(res)
-                setLoadingComment(false)
-            }).catch(err=>{
-                console.log(err)
-            })
-            await axios.get(`/api/v1/blogs/${params.id}`).then(res=>{
-                        setBlog(res.data.blog)
-                        setLoading(false)
-                        document.title = res.data.blog.title || blog.title
-                    })
-            
-        }
         fetchData()
     // eslint-disable-next-line  
-    }, [])
+    }, [comments.length])
 
+    const fetchData= async()=>{
+        await getComment(params.id).then(res=>{
+            setComments(res)
+            setLoadingComment(false)
+        }).catch(err=>{
+            console.log(err)
+        })
+        await axios.get(`/api/v1/blogs/${params.id}`).then(res=>{
+                    setBlog(res.data.blog)
+                    setLoading(false)
+                    document.title = res.data.blog.title || blog.title
+                })
+        
+    }
     return (
         <Content className="container" style={{marginTop:"30px"}}>
         {loading?<Skeleton active avatar paragraph={{ rows: 4 }}/>:
@@ -65,6 +65,7 @@ export default function ReadBlog() {
                     {dayjs(blog.createdAt).format('MMM DD, YYYY')}
                 </div>
             </div>
+            <Divider />
             <div className="title">
                 <h1 style={{fontSize:"25px"}}>{blog.title}</h1>
                 <p style={{fontSize:"15px"}}>{blog.description}</p>
@@ -78,10 +79,10 @@ export default function ReadBlog() {
             <Divider />
             <div className="comment">
                 Comments
-                <WriteComment blogId={blog._id}/>
+                <WriteComment blogId={blog._id} fetchCmt={fetchData}/>
                 {loadingComment?<p>Loaing comment</p>:
                 <>{comments.map((comment)=>(
-                    <Commentt key={comment._id} comment={comment}/>
+                    <Commentt key={comment._id} comment={comment} fetchCmt={fetchData}/>
                 ))}</>
                 }
             </div>

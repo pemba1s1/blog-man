@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Form, Button, Input} from 'antd'
-import { writeComment } from "../../services/Comment";
+import { editComment } from "../../services/Comment";
 import { useNavigate } from 'react-router';
 
 
-export default function WriteComment({blogId,fetchCmt}) {
+export default function EditComment({commentId,fetchCmt,setEdit}) {
     let [comment,setComment] = useState('')
     let navigate = useNavigate()
     const handleChange = (e) => {
@@ -12,8 +12,7 @@ export default function WriteComment({blogId,fetchCmt}) {
     }
     const onSubmit = async() => {
         if(localStorage.getItem('token')){
-            await writeComment({blogId,comment})
-            setComment('')
+            await editComment({commentId,comment,setEdit})
             fetchCmt()
         }else{
             navigate('/login')
@@ -27,7 +26,7 @@ export default function WriteComment({blogId,fetchCmt}) {
             </Form.Item>
             <Form.Item>
             <Button htmlType="submit"  onClick={onSubmit} type="primary">
-                Add Comment
+                Edit Comment
             </Button>
         </Form.Item>
         </>
