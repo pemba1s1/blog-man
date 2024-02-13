@@ -4,6 +4,7 @@ const {StatusCodes} = require('http-status-codes')
 const auth = async (req,res,next) => {
     const authHeader = req.headers.authorization
     if(!authHeader || !authHeader.startsWith('Bearer')){
+        console.log('here')
         res.status(StatusCodes.UNAUTHORIZED).json({msg:"Authentication invalid"})
     }
     const token = authHeader.split(' ')[1]
@@ -13,6 +14,7 @@ const auth = async (req,res,next) => {
         req.user = {userId : payload.userId, username : payload.username}
         next()
     }catch(err){
+        console.log('there')
         res.status(StatusCodes.UNAUTHORIZED).json({msg:"Authentication invalid"})
     }
 }
