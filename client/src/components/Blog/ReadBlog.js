@@ -57,7 +57,7 @@ export default function ReadBlog() {
                     </Button>
                 </div>
             }               
-                <Avatar size="large" src={`/file/${blog.writer.avatar}`}/> 
+                <Avatar size="large" src={`${process.env.REACT_APP_API_URL}/file/${blog.writer.avatar}`}/> 
                 <div style={{display:"inline",marginLeft:"10px"}}>
                 <Link to={`/user/${blog.writer.username}`}><p className="profile-name">{blog.writer.name}</p></Link>
                 </div>                

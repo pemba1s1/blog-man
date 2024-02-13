@@ -26,7 +26,7 @@ export default function Commentt({comment,fetchCmt}) {
     return (
             <Comment
             author={<Link to={`/user/${comment.authorId.username}`}>{comment.authorId.username}</Link>}
-            avatar={<Avatar src={`/file/${comment.authorId.avatar}`} alt="Han Solo" />}
+            avatar={<Avatar src={`${process.env.REACT_APP_API_URL}/file/${comment.authorId.avatar}`} alt="Han Solo" />}
             content={
                 <>
                 {comment.authorId._id===localStorage.getItem('userId') && 

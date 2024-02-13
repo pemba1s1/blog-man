@@ -55,7 +55,7 @@ export default function Profile() {
                                 }
                             >
                             <List.Item.Meta 
-                                avatar={<Avatar src={`/file/${user.avatar}`}/>}
+                                avatar={<Avatar src={`${process.env.REACT_APP_API_URL}/file/${user.avatar}`}/>}
                                 title={<Link to={`/user/${user.username}`}>{user.name}</Link>}
                                 description={<Link to={`/blog/${item._id}`}>{item.title}</Link>}
                             />

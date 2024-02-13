@@ -23,7 +23,7 @@ export default function Nav() {
         {localStorage.getItem('userId')?
         <Menu theme="dark" onClick={handleClick} mode="horizontal" className="auth" selectedKeys={[current]}>
             <Item className="item" key="/blog/create/"><NavLink to="/blog/create/">New Blog</NavLink></Item>            
-            <Menu.SubMenu key="sub" icon={<Avatar style={{border:"1px solid #f5f5f5"}} size="large" src={`/file/${localStorage.getItem('avatar')}`}/>}>
+            <Menu.SubMenu key="sub" icon={<Avatar style={{border:"1px solid #f5f5f5"}} size="large" src={`${process.env.REACT_APP_API_URL}/file/${localStorage.getItem('avatar')}`}/>}>
                 <Item key="myprofile">
                 <NavLink to={`/user/${localStorage.getItem('username')}`}>My Profile</NavLink>
                 </Item>

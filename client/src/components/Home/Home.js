@@ -42,7 +42,7 @@ export default function Home() {
                     }
                 >
                 <List.Item.Meta 
-                    avatar={<Avatar src={`/file/${item.writer.avatar}`}/>}
+                    avatar={<Avatar src={`${process.env.REACT_APP_API_URL}/file/${item.writer.avatar}`}/>}
                     title={<Link to={`/user/${item.writer.username}`}>{item.writer.name}</Link>}
                     description={<Link to={`/blog/${item._id}`}>{item.title}</Link>}
                 />
