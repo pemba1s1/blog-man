@@ -38,7 +38,7 @@ export default function Home() {
                     className="litem"
                     key={item._id}
                     extra={
-                        <Image preview={false} src={`/file/${item.photo}`} alt="logo" className="img"/>
+                        <Image preview={false} src={`${process.env.REACT_APP_API_URL}/file/${item.photo}`} alt="logo" className="img"/>
                     }
                 >
                 <List.Item.Meta 

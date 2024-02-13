@@ -71,7 +71,7 @@ export default function ReadBlog() {
                 <p style={{fontSize:"15px"}}>{blog.description}</p>
             </div>
             <div className="flex-image">
-            <Image preview={false} src={`/file/${blog.photo}`} alt="logo" style={{width:"100%",marginBottom:"15px"}}/>
+            <Image preview={false} src={`${process.env.REACT_APP_API_URL}/file/${blog.photo}`} alt="logo" style={{width:"100%",marginBottom:"15px"}}/>
             </div>
             <div className="content">
                 <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blog.content)}}></p>

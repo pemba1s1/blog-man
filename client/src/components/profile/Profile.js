@@ -30,7 +30,7 @@ export default function Profile() {
         <Content className="grid">
             <Affix offsetTop={10}>
                 <div className="item">
-                    <Image src={`/file/${user.avatar}`} className="profile-pic"/>
+                    <Image src={`${process.env.REACT_APP_API_URL}/file/${user.avatar}`} className="profile-pic"/>
                     <h1>{user.name}</h1>
                     <p className="username">{user.username}</p>
                     {user._id===localStorage.getItem('userId')&&
