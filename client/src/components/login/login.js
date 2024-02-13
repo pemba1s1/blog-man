@@ -1,7 +1,7 @@
 import { Content } from "antd/lib/layout/layout";
 import {Form, Input, Button, Checkbox,Spin} from 'antd'
 import { UserOutlined, LockOutlined,LoadingOutlined } from '@ant-design/icons';
-import axios from "axios";
+import instance from "../../router/axiosInstance";
 import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ export default function Login() {
     const onFinish = async (values) => {
         setErr("")
         setLoad(true)
-        await axios.post('/api/user/login',values).then(res=>{
+        await instance.post('/api/user/login',values).then(res=>{
             localStorage.setItem('token',res.data.token)
             localStorage.setItem('userId',res.data.user.userId)
             localStorage.setItem('avatar',res.data.user.avatar)

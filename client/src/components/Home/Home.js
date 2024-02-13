@@ -1,6 +1,6 @@
 import { Content } from "antd/lib/layout/layout";
 import { List, Avatar, Skeleton,Image } from 'antd';
-import axios from "axios";
+import instance from "../../router/axiosInstance";
 import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs"
@@ -11,7 +11,7 @@ export default function Home() {
 
     useEffect(() => {
         async function fetchData(){
-            await axios.get('/api/v1/blogs').then(res=>{
+            await instance.get('/api/v1/blogs').then(res=>{
                 setBlogs(res.data.blogs)
                 setLoading(false)
             },err=>{

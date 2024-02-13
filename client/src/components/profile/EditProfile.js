@@ -1,6 +1,6 @@
 import { Button, Form, Input,Spin,Upload } from "antd";
 import { Content } from "antd/lib/layout/layout";
-import axios from "axios";
+import instance from "../../router/axiosInstance";
 import { useState,useEffect } from "react";
 import { LoadingOutlined } from '@ant-design/icons';
 import { useParams } from "react-router-dom";
@@ -19,7 +19,7 @@ export default function EditProfile() {
     const [form] = Form.useForm()
 
     async function fetchData(){
-        await axios.get(`/api/user/${params.username}`).then(res=>{
+        await instance.get(`/api/user/${params.username}`).then(res=>{
             setUser(res.data.user)
             document.title = "Edit | "+res.data.user.username
             setLoading(false)
@@ -44,7 +44,7 @@ export default function EditProfile() {
         console.log(file)
         const fd = new FormData();
         fd.append('file', file, file.name);
-        await axios.post('/file/upload',fd,{
+        await instance.post('/file/upload',fd,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }

@@ -7,11 +7,11 @@ import {
     Upload
   } from 'antd';
 import { LoadingOutlined,UploadOutlined } from '@ant-design/icons';
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { useState,useEffect } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import instance from "../../router/axiosInstance";
 
 const dummyRequest = ({ file, onSuccess }) => {
     setTimeout(() => {
@@ -53,14 +53,14 @@ export default function CreateBlog() {
         const fd = new FormData();
         fd.append('file', file, file.name);
         console.log(values)
-        await axios.post('/file/upload',fd,{
+        await instance.post('/file/upload',fd,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
         }).then(res=>{
             console.log(res.data)
             values = {...values,photo:res.data}
-             axios.post('/api/v1/blogs',values,{
+             instance.post('/api/v1/blogs',values,{
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 }

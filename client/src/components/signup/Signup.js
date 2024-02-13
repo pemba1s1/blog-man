@@ -5,7 +5,7 @@ import {
     Button,
     Spin
   } from 'antd';
-import axios from "axios";
+  import instance from "../../router/axiosInstance";
 import { useNavigate } from "react-router";
 import {useState} from 'react'
 import { LoadingOutlined } from '@ant-design/icons';
@@ -19,7 +19,7 @@ export default function Signup() {
     const onFinish = async(values) => {
         setErr('')
         setLoad(true)
-        await axios.post('/api/user/signup',values).then(res=>{
+        await instance.post('/api/user/signup',values).then(res=>{
             console.log(res)
             setLoad(false)
             navigate("/login")

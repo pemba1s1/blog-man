@@ -1,6 +1,6 @@
 import { Content } from "antd/lib/layout/layout";
 import { List, Avatar, Button, Skeleton, Image,Affix } from 'antd';
-import axios from "axios";
+import instance from "../../router/axiosInstance";
 import { useState,useEffect } from "react";
 import { Link,useParams } from "react-router-dom";
 import { Del} from './../../services/Blog'
@@ -13,7 +13,7 @@ export default function Profile() {
     let [loading,setLoading] = useState(true)
 
     async function fetchData(){
-        await axios.get(`/api/v1/blogs/user/${params.username}`).then(res=>{
+        await instance.get(`/api/v1/blogs/user/${params.username}`).then(res=>{
             setBlogs(res.data.userBlogs)
             setUser(res.data.user)
             document.title = params.username

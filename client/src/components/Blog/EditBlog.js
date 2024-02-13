@@ -7,7 +7,7 @@ import {
     Upload
   } from 'antd';
 import { LoadingOutlined,UploadOutlined } from '@ant-design/icons';
-import axios from "axios";
+import instance from "../../router/axiosInstance";
 import { useNavigate,useParams } from "react-router";
 import { useEffect,useState } from "react";
 import {Edit} from './../../services/Blog'
@@ -47,7 +47,7 @@ export default function EditBlog() {
     let navigate=useNavigate()
     useEffect(() => {
         async function fetchData(){
-            axios.get(`/api/v1/blogs/${params.id}`).then(res=>{
+            instance.get(`/api/v1/blogs/${params.id}`).then(res=>{
                 if(res.data.blog.writer._id!==localStorage.getItem('userId')){
                     navigate('/')
                 }
@@ -66,7 +66,7 @@ export default function EditBlog() {
         setLoad(true)
         const fd = new FormData();
         fd.append('file', file, file.name);
-        await axios.post('/file/upload',fd,{
+        await instance.post('/file/upload',fd,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
