@@ -77,7 +77,7 @@ export default function EditProfile() {
             {loading ? <><center><h1>Loading...</h1></center></> :
             <>
             <div className="item" style={{paddingTop:"70px"}}>
-            <img src={`/file/${user.avatar}`} alt="Profile Pic" className="profile-pic"/>
+            <img src={`${process.env.REACT_APP_API_URL}/file/${user.avatar}`} alt="Profile Pic" className="profile-pic"/>
             <br/>
             <ImgCrop >
                 <Upload style={{width:"100%"}} maxCount={1} accept=".jpg, .png, .jpeg" name="file" customRequest={submitFile} showUploadList={false}>

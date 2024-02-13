@@ -51,7 +51,7 @@ export default function Profile() {
                                 className="litem"
                                 key={item._id}
                                 extra={
-                                    <img src={`/file/${item.photo}`} alt="logo" className="img"/>
+                                    <img src={`${process.env.REACT_APP_API_URL}/file/${item.photo}`} alt="logo" className="img"/>
                                 }
                             >
                             <List.Item.Meta 
